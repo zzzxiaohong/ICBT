@@ -1,0 +1,15 @@
+[submodule "tools/subword-nmt"]
+	path = tools/subword-nmt
+	url = https://github.com/rsennrich/subword-nmt.git
+[submodule "tools/MUSE"]
+	path = tools/MUSE
+	url = https://github.com/facebookresearch/MUSE.git
+[submodule "tools/transformers"]
+	path = tools/transformers
+	url = https://github.com/huggingface/transformers.git
+[submodule "tools/fastText"]
+	path = tools/fastText
+	url = https://github.com/facebookresearch/fastText.git
+[submodule "tools/vecmap"]
+	path = tools/vecmap
+	url = https://github.com/artetxem/vecmap
