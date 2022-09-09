@@ -13,7 +13,7 @@ fname=$dom-train.tok
 foutname=train.tok
 
 # match
-python match-base.py \
+python $work_dir/match-base.py \
     --fin_path $data_dir --fin_name $fname\
     --fout_path $dest_dir --fout_name $foutname \
     --lan $sl \
@@ -28,7 +28,7 @@ do
 done
 
 # replace
-python replace.py --fpath $dest_dir --fname $foutname --lan $sl
+python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 
 # apply bpe
 bpe_scripts=$work_dir/tools/subword-nmt 

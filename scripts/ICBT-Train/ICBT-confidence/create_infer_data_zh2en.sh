@@ -14,7 +14,7 @@ fname=$dom-train.tok.mono
 foutname=train.tok
 
 # match
-python match-confidence.py \
+python $work_dir/match-confidence.py \
     --fin_path $data_dir --fin_name $fname\
     --fout_path $dest_dir --fout_name $foutname \
     --chs_word_dir $chs_word_dir \
@@ -29,7 +29,7 @@ do
 done
 
 # replace
-python replace.py --fpath $dest_dir --fname $foutname --lan $sl
+python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 
 # apply bpe
 bpe_scripts=$work_dir/tools/subword-nmt 

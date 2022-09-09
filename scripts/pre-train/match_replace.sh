@@ -12,7 +12,7 @@ tl=en
 for split in 'train' 'valid'
 do
     fname=$split.tok
-    python match.py \
+    python $work_dir/match-pretrain.py \
         --fin_path $data_dir --fin_name $fname\
         --fout_path $dest_dir --fout_name $fname \
         --s $sl --t $tl \
@@ -28,8 +28,8 @@ do
 done
 
 # replace
-python replace.py --fpath $dest_dir --fname train.tok --sl $sl --tl $tl
-python replace.py --fpath $dest_dir --fname valid.tok --sl $sl --tl $tl
+python $work_dir/replace-pretrain.py --fpath $dest_dir --fname train.tok --sl $sl --tl $tl
+python $work_dir/replace-pretrain.py --fpath $dest_dir --fname valid.tok --sl $sl --tl $tl
 cat $data_dir/train.tok.$sl $dest_dir/train.tok.tag.$sl > $dest_dir/train.tok.merge.$sl
 cat $data_dir/train.tok.$tl $dest_dir/train.tok.tag.$tl > $dest_dir/train.tok.merge.$tl
 cat $data_dir/valid.tok.$sl $dest_dir/valid.tok.tag.$sl > $dest_dir/valid.tok.merge.$sl

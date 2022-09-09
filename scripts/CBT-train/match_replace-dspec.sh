@@ -10,7 +10,7 @@ model_dir=$work_dir/output/language_model/$lan
 mkdir -p $out_dir $log_dir
 
 ## 1 match
-nohup python -u match-domainspec.py \
+nohup python -u $work_dir/match-domainspec.py \
         --din_bert_dir $model_dir/$tdom \
         --dout_bert_dir $model_dir/dout \
         --textname $text_name \
@@ -21,7 +21,7 @@ nohup python -u match-domainspec.py \
         --device cuda:$cuda_id > $log_dir/match-dspec.$tdom.log &
 
 # ## 2 replace
-# python replace.py --fpath $out_dir --fname train.tok --lan $lan
+# python $work_dir/replace.py --fpath $out_dir --fname train.tok --lan $lan
 
 # ## 3 apply bpe
 # bpe_scripts=$work_dir/tools/subword-nmt 

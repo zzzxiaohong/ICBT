@@ -19,7 +19,7 @@ num_works=10
 mkdir -p $dest_dir
 
  # 1 match 
-nohup python -u match-domainspec.py \
+nohup python -u $work_dir/match-domainspec.py \
         --din_bert_dir $model_dir/$tdom \
         --dout_bert_dir $model_dir/dout \
         --textname $trans_dir/$fname \
@@ -30,7 +30,7 @@ nohup python -u match-domainspec.py \
         --device cuda:$cuda_id > $log_dir/match-iter$iter_num.train.$tdom.log &
 
 #  # 2 replace
-# python replace.py --fpath $dest_dir --fname $foutname --lan $sl
+# python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 
 # ## 01 Apply lexical constraints on the valid dataset
 # valid_dir=$work_dir/data/din_data/$tdom/
@@ -38,7 +38,7 @@ nohup python -u match-domainspec.py \
 # foutname=$tdom-valid.tok
 # num_works=1
 #   # 1 match
-# nohup python -u match-domainspec.py \
+# nohup python -u $work_dir/match-domainspec.py \
 #         --din_bert_dir $model_dir/$tdom \
 #         --dout_bert_dir $model_dir/dout \
 #         --textname $valid_dir/$fname \
@@ -48,7 +48,7 @@ nohup python -u match-domainspec.py \
 #         --max_matched_num 3 \
 #         --device cuda:$cuda_id > $log_dir/match-iter$iter_num.valid.$tdom.log &
 #  # 2 replace
-# python replace.py --fpath $dest_dir --fname $foutname --lan $sl
+# python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 
 
 # ## 02 apply bpe
@@ -62,7 +62,7 @@ nohup python -u match-domainspec.py \
 # dout_tagdata_dir=$work_dir/data/datatag/dout
 # data_mono=$work_dir/data/datamono/mono-en
 # line_num=$(cat $dest_dir/$tdom-train.bpe.tag.$sl | wc -l)
-# python sample.py --sl $sl --tl $tl --num $line_num \
+# python $work_dir/sample.py --sl $sl --tl $tl --num $line_num \
 #     --fin_name $dout_tagdata_dir/train.bpe.merge --fout_name $dest_dir/dout-$tdom-train.bpe.tag
 
 # cat $data_mono/$tdom-train.bpe.mono.$tl >> $dest_dir/dout-$tdom-train.bpe.tag.$tl

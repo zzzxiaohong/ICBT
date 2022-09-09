@@ -17,7 +17,7 @@ num_works=10
 mkdir -p $dest_dir
 
  # match
-python match-iter-base.py \
+python $work_dir/match-iter-base.py \
     --fin_path $trans_dir --fin_name $fname\
     --fout_path $dest_dir --fout_name $foutname \
     --lan $sl \
@@ -31,7 +31,7 @@ do
     rm $dest_dir/*$foutname$i*
 done
  # replace
-python replace.py --fpath $dest_dir --fname $foutname --lan $sl
+python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 
 ## Apply lexical constraints on the valid dataset
 valid_dir=$work_dir/data/din_data/$tdom/
@@ -39,7 +39,7 @@ fname=valid.tok.zh
 foutname=$tdom-valid.tok
 num_works=1
   # match
-python match-iter-base.py \
+python $work_dir/match-iter-base.py \
     --fin_path $valid_dir --fin_name $fname\
     --fout_path $dest_dir --fout_name $foutname \
     --lan $sl \
@@ -53,7 +53,7 @@ do
     rm $dest_dir/*$foutname$i*
 done
  # replace
-python replace.py --fpath $dest_dir --fname $foutname --lan $sl
+python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 
 
 ## apply bpe
@@ -67,7 +67,7 @@ python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}
 dout_tagdata_dir=$work_dir/data/datatag/dout
 data_mono=$work_dir/data/datamono/mono-en
 line_num=$(cat $dest_dir/$tdom-train.bpe.tag.$sl | wc -l)
-python sample.py --sl $sl --tl $tl --num $line_num \
+python $work_dir/sample.py --sl $sl --tl $tl --num $line_num \
     --fin_name $dout_tagdata_dir/train.bpe.merge --fout_name $dest_dir/dout-$tdom-train.bpe.tag
 
 cat $data_mono/$tdom-train.bpe.mono.$tl >> $dest_dir/dout-$tdom-train.bpe.tag.$tl

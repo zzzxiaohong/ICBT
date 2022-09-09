@@ -19,7 +19,7 @@ sed -i 's/<<unk>>\|<unk>//g' $dest_dir/$tdom-train.tok.$sl
 python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/$tdom-train.tok.$sl > $dest_dir/$tdom-train.bpe.$sl
 line_num=$(cat $dest_dir/$tdom-train.bpe.$sl | wc -l)
 
-python sample.py --sl $sl --tl $tl --num $line_num \
+python $work_dir/sample.py --sl $sl --tl $tl --num $line_num \
     --fin_name $dout_data_dir/train.bpe --fout_name $dest_dir/dout-$tdom-train.bpe
 
 cat $dest_dir/$tdom-train.bpe.$sl >> $dest_dir/dout-$tdom-train.bpe.$sl
