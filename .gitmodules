@@ -13,3 +13,6 @@
 [submodule "tools/vecmap"]
 	path = tools/vecmap
 	url = https://github.com/artetxem/vecmap
+[submodule "tools/fairseq"]
+	path = tools/fairseq
+	url = https://github.com/facebookresearch/fairseq.git
