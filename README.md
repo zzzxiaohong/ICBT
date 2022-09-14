@@ -137,9 +137,33 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
     bash scripts/CBT-train/pre-inference-zh2en.sh [Domain_name] [GPU_id] [Sampling_way]
     ```
 
-    For the "Sampling_way" parameter, you can choose base/dspec/conf, as does this parameter that appears below.
+    For the "Sampling_way" parameter, you can choose *base/dspec/conf*, as does this parameter that appears below.
 
-  - Generate pseudo-parallel data
+  - Create the pseudo-parallel data:
 
-- 
+    ```
+    bash scripts/CBT-train/create_pse_data.sh [Domain_name] [Sampling_way]
+    ```
+
+  - Binarize pseudo-parallel data:
+
+    ```
+    bash scripts/CBT-train/binary_finetune.sh [Domain_name] [Sampling_way]
+    ```
+
+  - Fine-tune the NMT model:
+
+    ```
+    bash scripts/CBT-train/fine-tune.sh [Domain_name] [GPU_id] [Sampling_way]
+    ```
+
+- ICBT-Base (Baseline iterative constrained back-translation method):
+
+  
+
+- ICBT-DomainSpec(Iterative constrained back-translation method + domain specificity sampling strategy)
+
+  
+
+- ICBT-Confidence(Iterative constrained back-translation method + confidence estimation sampling strategy)
 
