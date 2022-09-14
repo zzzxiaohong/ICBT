@@ -11,10 +11,12 @@ Iterative Constrained Back-Translation  (ICBT) apply lexical constraints into ba
 [Usage](#Usage)
 
 > [Extract in-domain dictionary](#Extract-in-domain-dictionary)
-
-
-
-\ \ \ \ \ \ \ [Test](#Test)
+>
+> [Pre-train the models](#Pre-train-the-models)
+>
+> [Fine-tune translation models](#Fine-tune-translation-models)
+>
+>  [Test](#Test)
 
 ## Downloads
 
