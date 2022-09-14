@@ -2,7 +2,7 @@ work_dir= # your working directory path
 tdom=$1
 sl=en
 tl=zh
-version=base # base/dspec/conf
+version=$2 # base/dspec/conf
 
 bin_path=$work_dir/output/data-bin-join/CBT/CBT-$version/$tdom
 train_data_path=$work_dir/data/datacbt/CBT-$version/$tdom

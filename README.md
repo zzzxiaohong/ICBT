@@ -98,5 +98,48 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   bash scripts/QE/train-qe.sh [GPU_id]
   ```
 
-  
+#### Fine-tune translation models with in-domain monolingual data
+
+- CBT (Lexically constrained back-translation method):
+
+  - Constrain the target in-domain monolingual data:
+
+    - Baseline constraint sampling strategy (CBT-base):
+
+      ```
+      bash scripts/CBT-train/match_replace-base.sh [Domain_name]
+      ```
+
+    - Or  constraint sampling via domain specificity (CBT-DomainSpec):
+
+      ```
+      bash scripts/CBT-train/match_replace-dspec.sh [Domain_name] [GPU_id]
+      ```
+
+    - Or  constraint sampling via confidence estimation (CBT-Confidence):
+
+      Firstly, infer the unconstrained data and use the confidence estimation model to score translation quality, and sample the  poorly translated words.
+
+      ```
+      bash scripts/CBT-train/inference_for_conf.sh [Domain_name] [GPU_id]
+      bash scripts/CBT-train/predict_conf.sh [Domain_name] [GPU_id]
+      ```
+
+      And then, match the sampled words with the dictionary and replace them.
+
+      ```
+      bash scripts/CBT-train/match_replace-conf.sh [Domain_name] [GPU_id]
+      ```
+
+  - Infer constrained monolingual data using pre-trained CBT model:
+
+    ```
+    bash scripts/CBT-train/pre-inference-zh2en.sh [Domain_name] [GPU_id] [Sampling_way]
+    ```
+
+    For the "Sampling_way" parameter, you can choose base/dspec/conf, as does this parameter that appears below.
+
+  - Generate pseudo-parallel data
+
+- 
 

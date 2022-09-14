@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=$2
 sl=en
 tl=zh
 tdom=$1
-version=base # base/dspec/conf
+version=$3 # base/dspec/conf
 
 model_dir=$work_dir/output/checkpoints/pre-train/$sl-$tl
 data_dir=$work_dir/output/data-bin-join/CBT/CBT-$version/$tdom

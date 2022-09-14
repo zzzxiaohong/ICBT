@@ -1,7 +1,7 @@
 work_dir= # your working directory path
 export CUDA_VISIBLE_DEVICES=$2
 tdom=$1
-version=conf # base/dspec/conf
+version=$3 # base/dspec/conf
 
 sl=zh
 tl=en
