@@ -10,7 +10,7 @@ Iterative Constrained Back-Translation  (ICBT) apply lexical constraints into ba
 
 [Usage](#Usage)
 
-​       [Extract in-domain dictionary](#Extract\ in-domain\ dictionary)
+​       [Extract in-domain dictionary](#Extract_in-domain_dictionary)
 
 [Test](#Test)
 
@@ -53,7 +53,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 ## Usage
 
-### Extract in-domain dictionary
+### Extract_in-domain_dictionary
 
 - Train word embeddings on each language:
 
