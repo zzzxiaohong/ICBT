@@ -41,7 +41,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 ## Get Started
 
-#### Extract an in-domain dictionary using lexical induction
+### Extract an in-domain dictionary using lexical induction
 
 - Train word embeddings on each language:
 
@@ -61,7 +61,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   bash scripts/lexical_induction/extract_lexicon.sh
   ```
 
-#### Pre-train the models
+### Pre-train the models
 
 - Pre-train the en2zh neural machine translation (NMT) model:
 
@@ -98,7 +98,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   bash scripts/QE/train-qe.sh [GPU_id]
   ```
 
-#### Fine-tune translation models with in-domain monolingual data
+### Fine-tune translation models with in-domain monolingual data
 
 - CBT (Lexically constrained back-translation method):
 
@@ -167,5 +167,5 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 - ICBT-Confidence(Iterative constrained back-translation method + confidence estimation sampling strategy)
 
-#### Test
+### Test
 
