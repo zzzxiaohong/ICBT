@@ -22,11 +22,15 @@ We provide the pre-trained model and preprocessed in-domain monolingual data fro
 
   - Train word embeddings on each language:
 
-    `bash scripts/lexical_induction/train-embed.sh`
+    ```shell
+    bash scripts/lexical_induction/train-embed.sh
+    ```
 
   - Build cross-lingual embedding representations:
 
-    `bash scripts/lexical_induction/run_map.sh  GPU_ids`
+    ```shell
+    bash scripts/lexical_induction/run_map.sh  GPU_ids
+    ```
 
   - Extract lexicon
 
