@@ -10,8 +10,8 @@ dest_dir=$work_dir/output/embed
 mkdir -p $dest_dir
 cat $data_dir/*-train.tok.mono.en > $data_dir/all-train.mono.en
 cat $data_dir/*-train.tok.mono.zh > $data_dir/all-train.mono.zh
-cat $sdata_dir/train.clean.en >> $data_dir/all-train.mono.en
-cat $sdata_dir/train.clean.zh >> $data_dir/all-train.mono.zh
+cat $sdata_dir/train.tok.en >> $data_dir/all-train.mono.en
+cat $sdata_dir/train.tok.zh >> $data_dir/all-train.mono.zh
 
 
 for lang in en zh
