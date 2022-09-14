@@ -14,7 +14,7 @@ save_dir=$work_dir/output/checkpoints/CBT/CBT-$version/$tdom-$sl-$tl
 epoch=40
 log_dir=$save_dir/log
 mkdir -p $save_dir $log_dir
-nohup fairseq-train $data_dir \
+fairseq-train $data_dir \
               --save-dir $save_dir \
               --restore-file $model_dir/checkpoint_best.pt \
               --arch transformer \
@@ -40,4 +40,4 @@ nohup fairseq-train $data_dir \
               --fp16 \
               --reset-dataloader \
               --reset-optimizer \
-              --save-interval-updates 5000 1> $log_dir/log.txt 2> $log_dir/err.txt &
+              --save-interval-updates 5000 > $log_dir/train.log 2>&1

@@ -59,8 +59,8 @@ python $work_dir/replace.py --fpath $dest_dir --fname $foutname --lan $sl
 ## apply bpe
 bpe_scripts=$work_dir/tools/subword-nmt 
 bpe_model_dir=$work_dir/data/dout_data/bpe_model
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}-train.tok.tag.$sl > $dest_dir/${tdom}-train.bpe.tag.$sl
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}-valid.tok.tag.$sl > $dest_dir/${tdom}-valid.bpe.tag.$sl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}-train.tok.tag.$sl > $dest_dir/${tdom}-train.bpe.tag.$sl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}-valid.tok.tag.$sl > $dest_dir/${tdom}-valid.bpe.tag.$sl
 
 
 ## merge the out-of-domain data

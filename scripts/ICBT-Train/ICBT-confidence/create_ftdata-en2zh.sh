@@ -15,7 +15,7 @@ cp $trans_dir/$tdom.ft.predict.tok $dest_dir/$tdom-train.tok.$sl
 # apply bpe
 bpe_scripts=$work_dir/tools/subword-nmt 
 bpe_model_dir=$work_dir/data/dout_data/bpe_model
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}-train.tok.$sl > $dest_dir/${tdom}-train.bpe.$sl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/${tdom}-train.tok.$sl > $dest_dir/${tdom}-train.bpe.$sl
 
 # merge the out-of-domain data
 line_num=$(cat $dest_dir/$tdom-train.bpe.$sl | wc -l)

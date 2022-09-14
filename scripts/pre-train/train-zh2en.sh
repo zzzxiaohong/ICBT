@@ -1,6 +1,4 @@
-work_dir=# your working directory path
-code_path=$work_dir/tools/fairseq/fairseq_cli
-
+work_dir= # your working directory path
 export CUDA_VISIBLE_DEVICES=$1 
 sl=zh
 tl=en
@@ -10,7 +8,7 @@ log_path=$save_dir/log
 mkdir -p $log_path
 
 epoch=40
-nohup python $code_path/train.py $data_dir \
+fairseq-train $data_dir \
               --save-dir $save_dir \
               --arch transformer \
               --source-lang ${sl} --target-lang ${tl} \
@@ -31,4 +29,4 @@ nohup python $code_path/train.py $data_dir \
               --update-freq 8 \
               --max-epoch ${epoch} --keep-interval-updates 10 --keep-last-epochs 5 \
               --fp16 --share-all-embeddings\
-              --save-interval-updates 5000 1> $log_path/log.txt 2> $log_path/err.txt &
+              --save-interval-updates 5000 > $log_dir/train.log 2>&1

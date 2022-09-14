@@ -11,7 +11,7 @@ cp $train_data_dir/$dom-train.tok.mono.$lan $train_data_dir/$dom-train.tok.mono.
 cp $valid_data_dir/valid.tok.$lan $valid_data_dir/valid.tok.$lan.txt
 mkdir -p $save_dir
 
-CUDA_VISIBLE_DEVICE=$2 nohup python $code_dir/run_mlm.py \
+CUDA_VISIBLE_DEVICE=$2 python $code_dir/run_mlm.py \
     --model_name_or_path $model_dir \
     --train_file $train_data_dir/$dom-train.tok.mono.$lan.txt \
     --validation_file $valid_data_dir/valid.tok.$lan.txt \
@@ -21,4 +21,5 @@ CUDA_VISIBLE_DEVICE=$2 nohup python $code_dir/run_mlm.py \
     --line_by_line \
     --fp16 \
     --overwrite_output_dir \
-    --output_dir $save_dir  > ./log/$dom.train.log &
+    --output_dir $save_dir  \
+    > ./log/$dom.train.log 

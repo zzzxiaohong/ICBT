@@ -1,5 +1,4 @@
 work_dir= # your working directory path
-code_path=$work_dir/tools/fairseq/fairseq_cli
 tdom=$1
 sl=en
 tl=zh

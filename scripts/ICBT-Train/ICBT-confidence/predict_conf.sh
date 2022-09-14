@@ -18,7 +18,7 @@ log_dir=$log_path/${dom}.predict.log
 mkdir -p $log_path
 
 ## 1 calculate the scores of target words with QE model
-nohup python -u $code_dir/predict.py \
+python $code_dir/predict.py \
     --test-src=$src_data_name \
     --test-tgt=$tgt_data_name \
     --wwm \
@@ -27,10 +27,10 @@ nohup python -u $code_dir/predict.py \
     --predict-m=$PREDICT_M \
     --checkpoint=$model_dir \
     --score-output=$score_out \
-    --threshold=$log_path/threshold.out > $log_dir 2>&1 &
+    --threshold=$log_path/threshold.out > $log_dir 2>&1
 
-# ## 2 calculate the scores of source words with attention
-# python $code_dir/attn_with_qe.py --fpath $data_path --dom $dom 
+## 2 calculate the scores of source words with attention
+python $code_dir/attn_with_qe.py --fpath $data_path --dom $dom 
 
-# ## 3 choose the words with low confidence
-# python $code_dir/choose.py --fpath $data_path --dom $dom
+## 3 choose the words with low confidence
+python $code_dir/choose.py --fpath $data_path --dom $dom

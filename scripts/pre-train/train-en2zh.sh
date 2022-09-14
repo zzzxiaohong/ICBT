@@ -1,17 +1,14 @@
-work_dir=/data/zhanghongxiao/NMT/ICBT # your working directory path
-
+work_dir= # your working directory path
 export CUDA_VISIBLE_DEVICES=$1 
 sl=en
 tl=zh
 data_dir=$work_dir/output/data-bin-join/dout/$sl-$tl
-code_path=$work_dir/tools/fairseq/fairseq_cli
-
-epoch=40
 save_dir=$work_dir/output/checkpoints/pre-train/${sl}-${tl}/
 log_path=$save_dir/log
 mkdir -p $log_path
 
-nohup python $code_path/train.py $data_dir \
+epoch=40
+fairseq-train $data_dir \
               --save-dir $save_dir \
               --arch transformer \
               --source-lang ${sl} --target-lang ${tl} \
@@ -32,4 +29,4 @@ nohup python $code_path/train.py $data_dir \
               --update-freq 8 --share-all-embeddings \
               --max-epoch ${epoch} --keep-interval-updates 10 --keep-last-epochs 5 \
               --fp16 \
-              --save-interval-updates 5000 1> $log_path/log.txt 2> $log_path/err.txt &
+              --save-interval-updates 5000 > $log_dir/train.log 2>&1

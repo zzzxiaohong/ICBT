@@ -38,7 +38,7 @@ cat $data_dir/valid.tok.$tl $dest_dir/valid.tok.tag.$tl > $dest_dir/valid.tok.me
 # apply bpe
 bpe_scripts=$work_dir/tools/subword-nmt 
 bpe_model_dir=$work_dir/data/dout_data/bpe_model
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/train.tok.merge.$sl > $dest_dir/train.bpe.merge.$sl
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/train.tok.merge.$tl > $dest_dir/train.bpe.merge.$tl
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/valid.tok.merge.$sl > $dest_dir/valid.bpe.merge.$sl
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/valid.tok.merge.$tl > $dest_dir/valid.bpe.merge.$tl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/train.tok.merge.$sl > $dest_dir/train.bpe.merge.$sl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/train.tok.merge.$tl > $dest_dir/train.bpe.merge.$tl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/valid.tok.merge.$sl > $dest_dir/valid.bpe.merge.$sl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/valid.tok.merge.$tl > $dest_dir/valid.bpe.merge.$tl

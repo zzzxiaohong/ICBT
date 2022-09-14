@@ -14,7 +14,7 @@ data_dir=$work_dir/output/data-bin-join/ICBT/ICBT-dspec/zh2en/iter$iter_num/$tdo
 epoch=40
 log_dir=$save_dir/log
 mkdir -p $save_dir $log_dir
-nohup fairseq-train $data_dir \
+fairseq-train $data_dir \
               --save-dir $save_dir \
               --arch transformer \
               --restore-file $model_dir/checkpoint_best.pt \
@@ -39,4 +39,4 @@ nohup fairseq-train $data_dir \
               --reset-dataloader --reset-optimizer \
               --max-epoch ${epoch} --keep-interval-updates 10 --keep-last-epochs 5 \
               --fp16 \
-              --save-interval-updates 5000 1> $log_dir/log.txt 2> $log_dir/err.txt &
+              --save-interval-updates 5000 > $log_dir/train.log 2>&1

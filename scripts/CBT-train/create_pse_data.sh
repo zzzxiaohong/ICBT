@@ -16,7 +16,7 @@ mkdir -p $dest_dir
 cp $trans_dir/$tdom.$version.predict.tok $dest_dir/$tdom-train.tok.$sl
 sed -i 's/<<unk>>\|<unk>//g' $dest_dir/$tdom-train.tok.$sl
 ## bpe
-python3 $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/$tdom-train.tok.$sl > $dest_dir/$tdom-train.bpe.$sl
+python $bpe_scripts/apply_bpe.py -c $bpe_model_dir/enzh.bpe < $dest_dir/$tdom-train.tok.$sl > $dest_dir/$tdom-train.bpe.$sl
 line_num=$(cat $dest_dir/$tdom-train.bpe.$sl | wc -l)
 
 python $work_dir/sample.py --sl $sl --tl $tl --num $line_num \
