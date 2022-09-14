@@ -1,5 +1,5 @@
 work_dir= # your working directory path 
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=$1
 sl=zh
 tl=en
 

@@ -10,7 +10,7 @@ We provide the pre-trained model and preprocessed in-domain monolingual data fro
 
 ***data/datamono***: monolingual data in four domains: *Education*, *Laws*, *Science*, *Thesis*.
 
-***models/pre-train***: nmt models pre-trained on out-of-domain (*News*) data.
+***models/pre-train***: neural machine translation models pre-trained on out-of-domain (*News*) data.
 
 ***models/language_model***: Chineses masked language models trained on five domains: out-of-domain (*News*), *Education*, *Laws*, *Science*, *Thesis*.
 
@@ -18,23 +18,23 @@ We provide the pre-trained model and preprocessed in-domain monolingual data fro
 
 # Installation
 
-##### Install fairseq
+#### Install fairseq
 
 ```
-$ cd tools/fairseq && pip install --editable .
+cd tools/fairseq && pip install --editable .
 ```
 
-##### Install fastText
+#### Install fastText
 
 ```
-$ cd tools/fastText && mkdir build && cd build && cmake .. && make && make install
+cd tools/fastText && mkdir build && cd build && cmake .. && make && make install
 ```
 
-##### Install  transformers
+#### Install  transformers
 
 ```
-$ cd tools/transformers && pip install .
-$ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requirements.txt
+cd tools/transformers && pip install .
+cd tools/transformers/examples/pytorch/language-modeling && pip install -r requirements.txt
 ```
 
 
@@ -46,28 +46,57 @@ $ cd tools/transformers/examples/pytorch/language-modeling && pip install -r req
 - Train word embeddings on each language:
 
   ```shell
-  $ bash scripts/lexical_induction/train-embed.sh
+  bash scripts/lexical_induction/train-embed.sh
   ```
 
 - Build cross-lingual embedding representations:
 
   ```shell
-  $ bash scripts/lexical_induction/run_map.sh  GPU_ids
+  bash scripts/lexical_induction/run_map.sh [GPU_ids]
   ```
 
 - Extract dictionary by Cross-domain similarity local scaling ([CSLS](https://arxiv.org/pdf/1710.04087.pdf)):
 
   ```
-  $ bash scripts/lexical_induction/extract_lexicon.sh
+  bash scripts/lexical_induction/extract_lexicon.sh
   ```
 
-#### Pre-train the models with out-of-domain data
+#### Pre-train the models
 
-- Pre-train the en2zh NMT model:
+- Pre-train the en2zh neural machine translation (NMT) model:
 
   ```
-  $ bash scripts/pre-train/binary-en2zh.sh
-  $ bash scripts/pre-train/train-en2zh.sh
+  bash scripts/pre-train/binary-en2zh.sh
+  bash scripts/pre-train/train-en2zh.sh [GPU_ids]
   ```
 
-- 
+- Pre-train the zh2en constrained back-translation (CBT) model:
+
+  ```
+  bash scripts/pre-train/match_replace.sh # constrain the target of out-of-domain parallel data
+  bash scripts/pre-train/binary-zh2en.sh 
+  bash scripts/pre-train/train-zh2en.sh [GPU_ids]
+  ```
+
+- Pre-train the masked language models (MLMs) that will be used in CBT-DomainSpec and ICBT-DomainSpec:
+
+  - Pre-train out-of-domain MLM:
+
+    ```
+    bash scripts/MLM-train/train-mlm-dout.sh [GPU_id]
+    ```
+
+  - Pre-train in-domain MLM:
+
+    ```
+    bash scripts/MLM-train/train-mlm-din.sh [Domain_name] [GPU_id]
+    ```
+
+- Train the confidence estimation model that will be used in CBT-Confidence and ICBT-Confidence:
+
+  ```
+  bash scripts/QE/train-qe.sh [GPU_id]
+  ```
+
+  
+
