@@ -2,9 +2,18 @@
 
 Iterative Constrained Back-Translation  (ICBT) apply lexical constraints into back-translation to generate pseudo-parallel data with in-domain lexical knowledge, and then perform round-trip iterations to incorporate more lexical knowledge. We further explore sampling strategies of constrained words in ICBT to introduce more targeted lexical knowledge, via domain specificity and confidence estimation. You can see our COLING 2022 paper "Iterative Constrained Back-Translation for Unsupervised Domain Adaptation of Machine Translation"  for more details.
 
-[TOC]
+## Contents
 
+[Downloads](#Downloads)
 
+[Installation](#Installation)
+
+[Usage](#Usage)
+
+- [Extract in-domain dictionary](#Extract an in-domain dictionary using lexical induction)
+- [Pre-train the models](#Pre-train the models)
+- [Fine-tune translation models](#Fine-tune translation models with in-domain monolingual data)
+- [Test](#Test)
 
 ## Downloads
 
@@ -45,7 +54,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 ## Usage
 
-### Extract an in-domain dictionary using lexical induction
+### Extract in-domain dictionary
 
 - Train word embeddings on each language:
 
@@ -102,7 +111,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   bash scripts/QE/train-qe.sh [GPU_id]
   ```
 
-### Fine-tune translation models with in-domain monolingual data
+### Fine-tune translation models
 
 - CBT (Lexically constrained back-translation method):
 
