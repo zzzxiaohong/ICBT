@@ -16,22 +16,58 @@ We provide the pre-trained model and preprocessed in-domain monolingual data fro
 
 ***models/QE_model***: confidence estimation model trained on  out-of-domain (*News*) data.
 
+# Installation
+
+##### Install fairseq
+
+```
+$ cd tools/fairseq && pip install --editable .
+```
+
+##### Install fastText
+
+```
+$ cd tools/fastText && mkdir build && cd build && cmake .. && make && make install
+```
+
+##### Install  transformers
+
+```
+$ cd tools/transformers && pip install .
+$ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requirements.txt
+```
+
+
+
 ## Get Started
 
-- Extract an in-domain dictionary using lexical induction:
+#### Extract an in-domain dictionary using lexical induction
 
-  - Train word embeddings on each language:
+- Train word embeddings on each language:
 
-    ```shell
-    bash scripts/lexical_induction/train-embed.sh
-    ```
+  ```shell
+  $ bash scripts/lexical_induction/train-embed.sh
+  ```
 
-  - Build cross-lingual embedding representations:
+- Build cross-lingual embedding representations:
 
-    ```shell
-    bash scripts/lexical_induction/run_map.sh  GPU_ids
-    ```
+  ```shell
+  $ bash scripts/lexical_induction/run_map.sh  GPU_ids
+  ```
 
-  - Extract lexicon
+- Extract dictionary by Cross-domain similarity local scaling ([CSLS](https://arxiv.org/pdf/1710.04087.pdf)):
+
+  ```
+  $ bash scripts/lexical_induction/extract_lexicon.sh
+  ```
+
+#### Pre-train the models with out-of-domain data
+
+- Pre-train the en2zh NMT model:
+
+  ```
+  $ bash scripts/pre-train/binary-en2zh.sh
+  $ bash scripts/pre-train/train-en2zh.sh
+  ```
 
 - 
