@@ -229,7 +229,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
   (Take the k-*th* iteration as an example)
 
-  The fine-tuning process is basically the same as [ICBT-Base](#ICBT-Base-(Baseline-iterative-constrained-back-translation-method):), so the sample script is directly provided:
+  The fine-tuning process is basically the same as [ICBT-Base](#icbt-base-baseline-iterative-constrained-back-translation-method), so the sample script is directly provided:
 
   ```
   cd scripts/ICBT-Train/ICBT-domainspec/
