@@ -116,7 +116,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 ### Fine-tune translation models
 
-- **CBT (Lexically constrained back-translation method):**
+- ##### **CBT (Lexically constrained back-translation method):**
 
   ```
   cd scripts/CBT-train/
@@ -177,7 +177,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
     bash fine-tune.sh [Domain_name] [GPU_id] [Sampling_way]
     ```
 
-- **ICBT-Base (Baseline iterative constrained back-translation method):**
+- ##### **ICBT-Base (Baseline iterative constrained back-translation method):**
 
   (Take the k-*th* iteration as an example)
 
@@ -225,11 +225,11 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
     bash finetune-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
     ```
 
-- **ICBT-DomainSpec(Iterative constrained back-translation method + domain specificity sampling strategy)**
+- ##### **ICBT-DomainSpec(Iterative constrained back-translation method + domain specificity sampling strategy)**
 
   (Take the k-*th* iteration as an example)
 
-  The fine-tuning process is basically the same as **[ICBT-Base](https://github.com/zzzxiaohong/ICBT/blob/master/README#180)**, so the sample script is directly provided:
+  The fine-tuning process is basically the same as **[ICBT-Base](#ICBT-Base-(Baseline-iterative-constrained-back-translation-method):)**, so the sample script is directly provided:
 
   ```
   cd scripts/ICBT-Train/ICBT-domainspec/
@@ -243,7 +243,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   bash finetune-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
   ```
 
-- ICBT-Confidence(Iterative constrained back-translation method + confidence estimation sampling strategy)
+- ##### **ICBT-Confidence(Iterative constrained back-translation method + confidence estimation sampling strategy)**
 
   (Take the k-*th* iteration as an example)
 
