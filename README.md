@@ -267,3 +267,20 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 ### Test
 
+```
+cd ICBT/scripts/test/
+```
+
+- Binarize the test data:
+
+  ```
+  bash binary_test.sh [Domain_name]
+  ```
+
+- Infer the test data:
+
+  ```
+  bash inference.sh [Domain_name] [GPU_id]
+  ```
+
+  
