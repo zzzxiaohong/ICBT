@@ -2,7 +2,7 @@ work_dir= # your working directory path
 tdom=$1
 sl=en
 tl=zh
-iter_num=1 # 1/2/3
+iter_num=$2 # 1/2/3
 dict_dir=$work_dir/output/data-bin-join/dout/$sl-$tl
 bin_dir=$work_dir/output/data-bin-join/ICBT/ICBT-conf/en2zh/iter$iter_num/$tdom
 

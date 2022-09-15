@@ -2,13 +2,13 @@ work_dir= # your working directory path
 tdom=$1
 sl=zh
 tl=en
-iter_num=1 # 1/2/3
+iter_num=$2 # 1/2/3
 
 ## Apply lexical constraints on the translation outputs
 trans_dir=$work_dir/output/checkpoints/pre-train/$tl-$sl/result/
     # The path of translation outputs file
-    # for example:$work_dir/output/checkpoints/pre-train/$tl-$sl/result/
-    # or $work_dir/output/checkpoints/ICBT/ICBT-base/${tl}2${sl}/iter$((iter_num-1))/$tdom
+    # for example:$work_dir/output/checkpoints/pre-train/$tl-$sl/result/ when $iter_num == 1
+    # or $work_dir/output/checkpoints/ICBT/ICBT-base/${tl}2${sl}/iter$((iter_num-1))/$tdom when $iter_num > 1
 dest_dir=$work_dir/data/dataicbt/ICBT-base/zh2en/iter$iter_num/$tdom-tag
 dict_path=$work_dir/output/dict/din
 fname=${tdom}.ft.predict.tok

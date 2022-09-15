@@ -116,41 +116,45 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
 ### Fine-tune translation models
 
-- CBT (Lexically constrained back-translation method):
+- **CBT (Lexically constrained back-translation method):**
+
+  ```
+  cd scripts/CBT-train/
+  ```
 
   - Constrain the target in-domain monolingual data:
 
     - Baseline constraint sampling strategy (CBT-base):
 
       ```
-      bash scripts/CBT-train/match_replace-base.sh [Domain_name]
+      bash match_replace-base.sh [Domain_name]
       ```
 
     - Or  constraint sampling via domain specificity (CBT-DomainSpec):
 
       ```
-      bash scripts/CBT-train/match_replace-dspec.sh [Domain_name] [GPU_id]
+      bash match_replace-dspec.sh [Domain_name] [GPU_id]
       ```
 
     - Or  constraint sampling via confidence estimation (CBT-Confidence):
 
-      Firstly, infer the unconstrained data and use the confidence estimation model to score translation quality, and sample the  poorly translated words.
+      Firstly, infer the unconstrained data and use the confidence estimation model to score translation quality, and sample the poorly translated words.
 
       ```
-      bash scripts/CBT-train/inference_for_conf.sh [Domain_name] [GPU_id]
-      bash scripts/CBT-train/predict_conf.sh [Domain_name] [GPU_id]
+      bash inference_for_conf.sh [Domain_name] [GPU_id]
+      bash predict_conf.sh [Domain_name] [GPU_id]
       ```
 
       And then, match the sampled words with the dictionary and replace them.
 
       ```
-      bash scripts/CBT-train/match_replace-conf.sh [Domain_name] [GPU_id]
+      bash match_replace-conf.sh [Domain_name] [GPU_id]
       ```
 
   - Infer constrained monolingual data using pre-trained CBT model:
 
     ```
-    bash scripts/CBT-train/pre-inference-zh2en.sh [Domain_name] [GPU_id] [Sampling_way]
+    bash pre-inference-zh2en.sh [Domain_name] [GPU_id] [Sampling_way]
     ```
 
     For the "Sampling_way" parameter, you can choose *base/dspec/conf*, as does this parameter that appears below.
@@ -158,30 +162,110 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   - Create the pseudo-parallel data:
 
     ```
-    bash scripts/CBT-train/create_pse_data.sh [Domain_name] [Sampling_way]
+    bash create_pse_data.sh [Domain_name] [Sampling_way]
     ```
 
   - Binarize pseudo-parallel data:
 
     ```
-    bash scripts/CBT-train/binary_finetune.sh [Domain_name] [Sampling_way]
+    bash binary_finetune.sh [Domain_name] [Sampling_way]
     ```
 
   - Fine-tune the NMT model:
 
     ```
-    bash scripts/CBT-train/fine-tune.sh [Domain_name] [GPU_id] [Sampling_way]
+    bash fine-tune.sh [Domain_name] [GPU_id] [Sampling_way]
     ```
 
-- ICBT-Base (Baseline iterative constrained back-translation method):
+- **ICBT-Base (Baseline iterative constrained back-translation method):**
 
-  
+  (Take the k-*th* iteration as an example)
 
-- ICBT-DomainSpec(Iterative constrained back-translation method + domain specificity sampling strategy)
+  ```
+  cd scripts/ICBT-Train/ICBT-base/
+  ```
 
-  
+  - Infer English monolingual data via NMT model:
+
+    ```
+    bash inference-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
+    ```
+
+    where the *Iter_num* = k, as does this parameter that appears below.
+
+  - Create zh2en pseudo-parallel data:
+
+    ```
+    bash create_ftdata-zh2en.sh [Domain_name] [Iter_num]
+    ```
+
+  - Binarize zh2en pseudo-parallel data and fine-tune the zh2en model:
+
+    ```
+    bash binary_finetune-zh2en.sh [Domain_name] [Iter_num]
+    bash finetune-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+    ```
+
+  - Infer Chinese constrained monolingual data via CBT model:
+
+    ```
+    bash inference-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+    ```
+
+  - Create en2zh pseudo-parallel data:
+
+    ```
+    bash create_ftdata-en2zh.sh [Domain_name] [Iter_num]
+    ```
+
+  - Binarize en2zh pseudo-parallel data and fine-tune the en2zh model:
+
+    ```
+    bash binary_finetune-en2zh.sh [Domain_name] [Iter_num]
+    bash finetune-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
+    ```
+
+- **ICBT-DomainSpec(Iterative constrained back-translation method + domain specificity sampling strategy)**
+
+  (Take the k-*th* iteration as an example)
+
+  The fine-tuning process is basically the same as **ICBT-Base**, so the sample script is directly provided:
+
+  ```
+  cd scripts/ICBT-Train/ICBT-domainspec/
+  bash inference-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
+  bash create_ftdata-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+  bash binary_finetune-zh2en.sh [Domain_name] [Iter_num]
+  bash finetune-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+  bash inference-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+  bash create_ftdata-en2zh.sh [Domain_name] [Iter_num]
+  bash binary_finetune-en2zh.sh [Domain_name] [Iter_num]
+  bash finetune-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
+  ```
 
 - ICBT-Confidence(Iterative constrained back-translation method + confidence estimation sampling strategy)
+
+  (Take the k-*th* iteration as an example)
+
+  ```
+  cd ICBT/scripts/ICBT-Train/ICBT-confidence/
+  bash inference-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
+  bash create_ftdata-zh2en.sh [Domain_name] [Iter_num]
+  bash binary_finetune-zh2en.sh [Domain_name] [Iter_num]
+  bash finetune-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+  # infer Chinese unconstrained monoligual data
+  bash inference_for_conf.sh [Domain_name] [GPU_id] [Iter_num]
+  # score translation quality and sample the poorly translated words
+  bash predict_conf.sh [Domain_name] [GPU_id] [Iter_num]
+  # Constrain Chinese monoligual data
+  bash create_infer_data_zh2en.sh [Domain_name] [Iter_num]
+  bash inference-zh2en.sh [Domain_name] [GPU_id] [Iter_num]
+  bash create_ftdata-en2zh.sh [Domain_name] [Iter_num]
+  bash binary_finetune-en2zh.sh [Domain_name] [Iter_num]
+  bash finetune-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
+  ```
+
+  
 
 ### Test
 

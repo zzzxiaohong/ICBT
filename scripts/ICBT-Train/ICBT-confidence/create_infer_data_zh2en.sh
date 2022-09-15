@@ -1,7 +1,7 @@
 work_dir= # your working directory path 
 num_works=10
 dom=$1
-iter_num=1 # 1/2/3
+iter_num=$2 # 1/2/3
 dest_dir=$work_dir/data/dataicbt/ICBT-conf/infer/iter$iter_num/$dom
 dict_path=$work_dir/output/dict/din
 mkdir -p $dest_dir

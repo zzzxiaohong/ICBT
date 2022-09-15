@@ -3,10 +3,10 @@ export CUDA_VISIBLE_DEVICES=$2
 tdom=$1
 sl=en
 tl=zh
-iter_num=1 # 1/2/3
+iter_num=$3 # 1/2/3
 model_dir=$work_dir/output/checkpoints/pre-train/$sl-$tl
- # Model path for inference, for example: $work_dir/output/checkpoints/pre-train/$sl-$tl when starting iteration
- # or $work_dir/output/checkpoints/ICBT/ICBT-base/en2zh/iter$iter_num/$tdom
+ # Model path for inference, for example: $work_dir/output/checkpoints/pre-train/$sl-$tl when $iter_num == 1
+ # or $work_dir/output/checkpoints/ICBT/ICBT-base/en2zh/iter$iter_num/$tdom when $iter_num > 1
 dict_dir=$work_dir/output/data-bin-join/dout/$sl-$tl
 data_dir=$work_dir/data/datamono/mono-en
 log_dir=$model_dir/log

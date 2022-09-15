@@ -1,9 +1,9 @@
 work_dir= # your working directory path
-export CUDA_VISIBLE_DEVICES=$1 
+export CUDA_VISIBLE_DEVICES=$2
 sl=en
 tl=zh
-tdom=$2
-iter_num=1 # 1/2/3
+tdom=$1
+iter_num=$3 # 1/2/3
 model_dir=$work_dir/output/checkpoints/pre-train/$sl-$tl
 # model_dir=$work_dir/output/checkpoints/ICBT/ICBT-dspec/en2zh/iter$((iter_num-1))/$tdom
 # The path you need to import the model to continue training.

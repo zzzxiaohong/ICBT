@@ -3,7 +3,7 @@ tdom=$1
 cuda_id=$2
 sl=zh
 tl=en
-iter_num=1 # 1/2/3
+iter_num=$3 # 1/2/3
 
 ## 1 Apply lexical constraints on the translation outputs
 trans_dir=$work_dir/output/checkpoints/pre-train/$tl-$sl/result/

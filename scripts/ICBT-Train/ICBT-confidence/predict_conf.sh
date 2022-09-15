@@ -1,14 +1,14 @@
 work_dir= # your working directory path 
+dom=$1
 export CUDA_VISIBLE_DEVICES=$2
 # these values may be set larger for better performance
 PREDICT_N=40
 PREDICT_M=6
-iter_num=1 # 1/2/3
+iter_num=$3 # 1/2/3
 data_path=$work_dir/scripts/QE/output/ICBT-conf/iter$iter_num
 log_path=$work_dir/scripts/QE/logs
 sl=zh
 tl=en
-dom=$1
 src_data_name=$data_path/${dom}.source
 tgt_data_name=$data_path/${dom}.target
 model_dir=$work_dir/output/QE_model
