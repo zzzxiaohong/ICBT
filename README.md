@@ -229,7 +229,7 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
 
   (Take the k-*th* iteration as an example)
 
-  The fine-tuning process is basically the same as **ICBT-Base**, so the sample script is directly provided:
+  The fine-tuning process is basically the same as **[ICBT-Base](https://github.com/zzzxiaohong/ICBT/blob/master/README#180)**, so the sample script is directly provided:
 
   ```
   cd scripts/ICBT-Train/ICBT-domainspec/
@@ -264,8 +264,6 @@ cd tools/transformers/examples/pytorch/language-modeling && pip install -r requi
   bash binary_finetune-en2zh.sh [Domain_name] [Iter_num]
   bash finetune-en2zh.sh [Domain_name] [GPU_id] [Iter_num]
   ```
-
-  
 
 ### Test
 
